@@ -5,6 +5,13 @@
 
 #include "LSocket.h"
 
+#ifdef __WIN32
+    #pragma comment(lib, "ws2_32")
+#else
+    #include <sys/time.h>
+    #include <fcntl.h>
+#endif
+
 NS_LONG_BEGIN
 
     LSocketTypeInfo::LSocketTypeInfo(int nFamily, int nTtype, int nProtocol):
@@ -200,6 +207,82 @@ NS_LONG_BEGIN
     LAddressInfo* LSocket::getAddressInfo()
     {
         return m_pAddressInfo;
+    }
+
+    int LSocket::selectMode(SOCKET_TYPE socket, int nFdMode, int nTimeout) {
+        fd_set *pReadfds = NULL;
+        fd_set *pWritefds = NULL;
+        fd_set *pErrorfds = NULL;
+        if (nFdMode & FD_READ == FD_READ)
+        {
+            fd_set readfds;
+            FD_ZERO(&readfds);
+            FD_SET(socket, &readfds);
+            pReadfds = &readfds;
+        }
+        if (nFdMode & FD_WRITE == FD_WRITE)
+        {
+            fd_set writefds;
+            FD_ZERO(&writefds);
+            FD_SET(socket, &writefds);
+            pReadfds = &writefds;
+        }
+        if (nFdMode & FD_ERROR == FD_ERROR)
+        {
+            fd_set errorfds;
+            FD_ZERO(&errorfds);
+            FD_SET(socket, &errorfds);
+            pReadfds = &errorfds;
+        }
+
+        timeval * pTimeOut = NULL;
+        if( nTimeout < 0)
+        {
+            timeval timeout;
+            timeout.tv_sec = nTimeout / 1000;
+            timeout.tv_usec = (nTimeout % 1000) * 1000;
+            pTimeOut = &timeout;
+        }
+
+#ifdef __WIN32
+        int rtn = select(1, pReadfds, pWritefds, pWritefds, pTimeOut);
+        if(rtn == 0)
+        {
+            return 0;
+        }
+        else if(rtn == SOCKET_ERROR)
+        {
+            return -1;
+        }
+        return 1;
+#else
+        return select(socket + 1, pReadfds, pWritefds, pWritefds, pTimeOut);
+#endif
+    }
+
+    int LSocket::close(SOCKET_TYPE socket)
+    {
+#ifdef __WIN32
+        return closesocket(socket);
+#else
+        return close(socket);
+#endif
+    }
+
+    int LSocket::setNotBlockMode(SOCKET_TYPE socket)
+    {
+#ifdef __WIN32
+        unsigned long nRet = 1;
+	    ioctlsocket(socket, FIONBIO, &nRet);
+        return nRet;
+#else
+        int nFlag = fcntl(socket, F_GETFL);
+        if((nFlag & O_NONBLOCK) == 0)
+        {
+            return fcntl(socket, F_SETFL, O_NONBLOCK | nFlag);
+        }
+        return nFlag;
+#endif
     }
 
 NS_LONG_END

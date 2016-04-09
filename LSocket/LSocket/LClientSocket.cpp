@@ -59,4 +59,14 @@ NS_LONG_BEGIN
         return LSocket::recvData(this->getSocket(), pBuf, nFlag);
     }
 
+    int LClientSocket::setNotBlockMode()
+    {
+        return LSocket::setNotBlockMode(this->getSocket());
+    }
+
+    int LClientSocket::close()
+    {
+        return LSocket::close(this->getSocket());
+    }
+
 NS_LONG_END

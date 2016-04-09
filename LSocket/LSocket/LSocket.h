@@ -80,11 +80,31 @@ NS_LONG_BEGIN
         LSocket(LSocketTypeInfo * pTypeInfo);
         virtual ~LSocket();
 
+        // select模型的文件描述符集合类型
+        enum {
+            FD_READ = 0x01,
+            FD_WRITE = 0X10,
+            FD_ERROR = 0x100,
+        };
+
         // 发送数据
         int sendData(SOCKET_TYPE socket, const char * pData, int nFlag = NULL);
 
         // 接收数据
         int recvData(SOCKET_TYPE socket, char *pBuf, int nFlag = NULL);
+
+
+        // 设置非阻塞模式 - I/O非阻塞模型
+        int setNotBlockMode(SOCKET_TYPE socket);
+
+        // 设置阻塞模式 - I/O复用模型 (select/poll/epoll)
+        // @mode default select
+        // @param nTimeout 毫秒
+        //       (select-blocked will be enabled when nTimeout < 0, while non-block when nTimeout == 0)
+        int selectMode(SOCKET_TYPE socket, int nFdMode = FD_READ, int nTimeout = NULL);
+
+        // 关闭套接字
+        int close(SOCKET_TYPE socket);
 
     public:
         void setSocketTypeInfo(LSocketTypeInfo * pTypeInfo);

@@ -31,6 +31,12 @@ NS_LONG_BEGIN
         // 接收数据
         int recvData(char * pBuf, int nFlag = NULL);
 
+        // 设置非阻塞模式
+        int setNotBlockMode();
+
+        // 关闭套接字
+        int close();
+
     private:
 
     };
