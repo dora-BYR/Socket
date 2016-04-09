@@ -27,10 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1a7aa0cb-9d24-4c60-a7ce-2d9a888427dd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LSocket/LSocket/LClientSocket.cpp" afterPath="$PROJECT_DIR$/LSocket/LSocket/LClientSocket.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LSocket/LSocket/LClientSocket.h" afterPath="$PROJECT_DIR$/LSocket/LSocket/LClientSocket.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LSocket/LSocket/LSocket.cpp" afterPath="$PROJECT_DIR$/LSocket/LSocket/LSocket.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LSocket/LSocket/LSocket.h" afterPath="$PROJECT_DIR$/LSocket/LSocket/LSocket.h" />
     </list>
     <ignored path="LSocket.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -144,16 +141,16 @@
       <file leaf-file-name="LSocket.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LSocket/LSocket/LSocket.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.33435583">
+            <state vertical-scroll-proportion="1.1378505">
               <caret line="235" column="9" selection-start-line="235" selection-start-column="9" selection-end-line="235" selection-end-column="9" />
               <folding>
                 <element signature="e#133#163#0" expanded="true" />
                 <element signature="e#174#195#0" expanded="true" />
                 <element signature="e#2406#2511#0" expanded="true" />
                 <element signature="e#3134#3239#0" expanded="true" />
-                <element signature="e#5195#5418#0" expanded="true" />
-                <element signature="e#5588#5615#0" expanded="true" />
-                <element signature="e#5748#5834#0" expanded="true" />
+                <element signature="e#5197#5420#0" expanded="true" />
+                <element signature="e#5590#5617#0" expanded="true" />
+                <element signature="e#5750#5836#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -364,7 +361,7 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -645,16 +642,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LSocket/LSocket/LSocket.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.33435583">
+        <state vertical-scroll-proportion="1.1378505">
           <caret line="235" column="9" selection-start-line="235" selection-start-column="9" selection-end-line="235" selection-end-column="9" />
           <folding>
             <element signature="e#133#163#0" expanded="true" />
             <element signature="e#174#195#0" expanded="true" />
             <element signature="e#2406#2511#0" expanded="true" />
             <element signature="e#3134#3239#0" expanded="true" />
-            <element signature="e#5195#5418#0" expanded="true" />
-            <element signature="e#5588#5615#0" expanded="true" />
-            <element signature="e#5748#5834#0" expanded="true" />
+            <element signature="e#5197#5420#0" expanded="true" />
+            <element signature="e#5590#5617#0" expanded="true" />
+            <element signature="e#5750#5836#0" expanded="true" />
           </folding>
         </state>
       </provider>

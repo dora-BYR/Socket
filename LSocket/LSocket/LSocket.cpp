@@ -225,14 +225,14 @@ NS_LONG_BEGIN
             fd_set writefds;
             FD_ZERO(&writefds);
             FD_SET(socket, &writefds);
-            pReadfds = &writefds;
+            pWritefds = &writefds;
         }
         if (nFdMode & FD_ERROR == FD_ERROR)
         {
             fd_set errorfds;
             FD_ZERO(&errorfds);
             FD_SET(socket, &errorfds);
-            pReadfds = &errorfds;
+            pErrorfds = &errorfds;
         }
 
         timeval * pTimeOut = NULL;
@@ -245,7 +245,7 @@ NS_LONG_BEGIN
         }
 
 #ifdef __WIN32
-        int rtn = select(1, pReadfds, pWritefds, pWritefds, pTimeOut);
+        int rtn = select(1, pReadfds, pWritefds, pErrorfds, pTimeOut);
         if(rtn == 0)
         {
             return 0;
@@ -256,7 +256,7 @@ NS_LONG_BEGIN
         }
         return 1;
 #else
-        return select(socket + 1, pReadfds, pWritefds, pWritefds, pTimeOut);
+        return select(socket + 1, pReadfds, pWritefds, pErrorfds, pTimeOut);
 #endif
     }
 
