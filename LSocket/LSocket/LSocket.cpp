@@ -293,4 +293,44 @@ NS_LONG_BEGIN
         return setsockopt(m_stSocket, SOL_SOCKET, SO_RCVTIMEO, (const char *)&nTimeout, sizeof(int));
     }
 
+    std::unordered_map<std::string, int> LSocket::getFamilyTypeByIPOrHostName(std::string szIPorHostname) {
+        struct addrinfo *answer, hint, *curr;
+        bzero(&hint, sizeof(hint));
+        // char ipstr[128];
+        char * ipstr = new char[128];
+        hint.ai_family = AF_UNSPEC;
+        hint.ai_socktype = SOCK_STREAM;;
+        struct sockaddr_in  *sockaddr_ipv4;
+        struct sockaddr_in6 *sockaddr_ipv6;
+        std::unordered_map<std::string, int> result;
+
+        int ret = getaddrinfo(szIPorHostname.c_str(), NULL,&hint, &answer);
+        if (ret != 0) {
+            return result;
+        }
+        for (curr = answer; curr != NULL; curr = curr->ai_next) {
+            switch (curr->ai_family){
+                case AF_UNSPEC:
+                    result[szIPorHostname] = AF_UNSPEC;
+                    break;
+                case AF_INET:
+                    sockaddr_ipv4 = reinterpret_cast<struct sockaddr_in *>( curr->ai_addr);
+                    inet_ntop(AF_INET, &sockaddr_ipv4->sin_addr, ipstr, sizeof(ipstr));
+                    result[ipstr] = AF_INET;
+                    break;
+                case AF_INET6:
+                    sockaddr_ipv6 = reinterpret_cast<struct sockaddr_in6 *>( curr->ai_addr);
+                    inet_ntop(AF_INET6, &sockaddr_ipv6->sin6_addr, ipstr, sizeof(ipstr));
+                    result[ipstr] = AF_INET6;
+                    break;
+            }
+        }
+        freeaddrinfo(answer);
+        return result;
+    }
+
+    bool LSocket::getIsIPv6() {
+        return (m_pSctTpInfo->getFamily() == AF_INET6);
+    }
+
 NS_LONG_END

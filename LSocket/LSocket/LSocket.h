@@ -7,6 +7,7 @@
 #define LSOCKET_LSOCKET_H
 
 #include "define_l.h"
+#include <unordered_map>
 
 #ifdef __WIN32
     #include <WinSock2.h>
@@ -109,6 +110,12 @@ NS_LONG_BEGIN
         // 超时设置 ms
         int setSendTimeout(int nTimeout);
         int setRecvTimeout(int nTimeout);
+
+        // 根据IP或者域名字符串判断协议类型(AF_UNSPEC/AF_INET/AF_INET6)
+        std::unordered_map<std::string, int> getFamilyTypeByIPOrHostName(std::string szIPorHostname);
+
+        // IPv4/IPv6
+        bool getIsIPv6();
 
     public:
         void setSocketTypeInfo(LSocketTypeInfo * pTypeInfo);
