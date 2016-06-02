@@ -106,6 +106,10 @@ NS_LONG_BEGIN
         // 关闭套接字
         int close(SOCKET_TYPE socket);
 
+        // 超时设置 ms
+        int setSendTimeout(int nTimeout);
+        int setRecvTimeout(int nTimeout);
+
     public:
         void setSocketTypeInfo(LSocketTypeInfo * pTypeInfo);
         LSocketTypeInfo * getSocketTypeInfo();

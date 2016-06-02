@@ -9,11 +9,19 @@
 #include "LSocket.h"
 
 #include <vector>
+#include <functional>
+
+#include <sys/epoll.h>
 
 // 默认的最大连接等待队列长度
 #define DEFAULT_MAX_WAIT_CONNECT_COUNT  5
 // 默认允许的最大连接数
 #define DEFAULT_MAX_CONNECTED_COUNT     1024
+// epoll mode监听socket的最大数目
+#define COUNT_MAX_LISTEN_SOCKET_EPOLL   10000
+// epoll mode 一次处理的最大事件数目
+#define COUNT_MAX_EVENT_HANDLED         20
+// epoll mode 超时
 
 NS_LONG_BEGIN
 
@@ -40,9 +48,16 @@ NS_LONG_BEGIN
         // 接受客户端的连接
         SOCKET_TYPE acceptTarget(LAddressInfo * pInfo);
 
+        // epoll mode
+        int epollControl(int cmdType = EPOLL_CTL_ADD, int nEpSize = COUNT_MAX_LISTEN_SOCKET_EPOLL, int events = EPOLLIN|EPOLLET, int nTimeout = -1);
+        int epollWait(int nMaxEventCountHandled = COUNT_MAX_EVENT_HANDLED, int nTimeout = -1);
+
     private:
         unsigned int m_nMaxConnectedCount;
     	unsigned int m_nBacklog;
+        SOCKET_TYPE m_epollFd;
+        struct epoll_event m_epEvent;
+        struct epoll_event m_epEvents[COUNT_MAX_EVENT_HANDLED];
     };
 
 NS_LONG_END

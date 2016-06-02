@@ -3,11 +3,11 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/LSocket/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/LSocket/Sample/LTest.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/LSocket/Sample/LTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/LSocket/Sample/LTest.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/LSocket/LSocket/LServerSocket.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/LSocket/LSocket/LClientSocket.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/LSocket/LSocket/LClientSocket.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/LSocket/LSocket/LClientSocket.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/LSocket/LSocket/LSocket.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/LSocket/LSocket/LServerSocket.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/LSocket/LSocket/LSocket.h" isTestSource="false" />

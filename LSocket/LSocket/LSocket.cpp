@@ -285,4 +285,12 @@ NS_LONG_BEGIN
 #endif
     }
 
+    int LSocket::setSendTimeout(int nTimeout) {
+        return setsockopt(m_stSocket, SOL_SOCKET, SO_SNDTIMEO, (const char *)&nTimeout, sizeof(int));
+    }
+
+    int LSocket::setRecvTimeout(int nTimeout) {
+        return setsockopt(m_stSocket, SOL_SOCKET, SO_RCVTIMEO, (const char *)&nTimeout, sizeof(int));
+    }
+
 NS_LONG_END

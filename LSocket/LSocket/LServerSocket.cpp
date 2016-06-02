@@ -70,4 +70,15 @@ NS_LONG_BEGIN
         return clientSocket;
     }
 
+    int LServerSocket::epollControl(int cmdType, int nEpSize, int events, int nTimeout) {
+        if (m_epollFd <= 0) {
+            m_epollFd = epoll_create(nEpSize);
+        }
+        return epoll_ctl(m_epollFd, cmdType, getSocket(), &m_epEvent);
+    }
+
+    int LServerSocket::epollWait(int nMaxEventCountHandled, int nTimeout) {
+        return epoll_wait(m_epollFd, m_epEvents, COUNT_MAX_EVENT_HANDLED, nTimeout);
+    }
+
 NS_LONG_END
